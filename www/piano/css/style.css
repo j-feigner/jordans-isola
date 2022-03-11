@@ -6,8 +6,8 @@ html, body {
 }
 
 .viewport {
-    width: 1600px;
-    height: 900px;
+    width: 800px;
+    height: 300px;
     position: absolute;
     top: 50%;
     left: 50%;
