@@ -6,7 +6,7 @@ function main() {
     canvas.height = 400;
 
     var piano = new Piano(canvas, new AudioContext());
-    piano.load();
+    piano.start();
 
     canvas.addEventListener("click", (event) => {
         piano.checkKeyHit(event.offsetX, event.offsetY);
@@ -17,7 +17,6 @@ class Piano {
     constructor(canvas, audio_context) {
         this.c = canvas;
         this.ctx = this.c.getContext("2d");
-
         this.audio_ctx = audio_context;
 
         // Array of ArrayBuffer data decoded by AudioContext from MP3 data on server
@@ -26,6 +25,8 @@ class Piano {
         // Ordered array of PianoKey objects for rendering (front -> back) 
         // and hit detection (back -> front)
         this.key_buffer = [];
+
+        this.draw = this.draw.bind(this);
     }
 
     checkKeyHit(x, y) {
@@ -39,27 +40,9 @@ class Piano {
         }
     }
 
+    // Wrapper function for nested XMLHttpRequests for loading sound data and initializing app
+    // Call sequence: getSoundFiles() -> loadSoundFiles() -> createKeys() -> draw() loop
     start() {
-        this.draw();
-    }
-
-    draw() {
-        this.key_buffer.forEach((key) => {
-            this.ctx.fillStyle = key.type;
-            this.ctx.strokeStyle = "black";
-            this.ctx.lineWidth = 2;
-
-            this.ctx.beginPath();
-            this.ctx.rect(key.rect.x, key.rect.y, key.rect.width, key.rect.height);
-            this.ctx.closePath();
-            this.ctx.fill();
-            this.ctx.stroke();
-        })
-    }
-
-    // Wrapper function for nested XMLHttpRequests for loading sound data
-    // Call sequence: getSoundFiles() -> loadSoundFiles() -> createKeys() -> start()
-    load() {
         this.#getSoundFiles();
     }
 
@@ -125,7 +108,25 @@ class Piano {
         // Populate key buffer array according to render order (white -> black)
         this.key_buffer = white_keys.concat(black_keys);
 
-        this.start();
+        // Begin animation loop
+        window.requestAnimationFrame(this.draw);
+    }
+
+    draw() {
+        this.key_buffer.forEach((key) => {
+            if(key.is_playing) {
+                this.ctx.fillStyle = "gray";
+            } else {
+                this.ctx.fillStyle = key.type;
+            }
+            this.ctx.strokeStyle = "black";
+            this.ctx.lineWidth = 2;
+
+            this.ctx.fillRect(key.rect.x, key.rect.y, key.rect.width, key.rect.height);
+            this.ctx.strokeRect(key.rect.x, key.rect.y, key.rect.width, key.rect.height);
+        })
+
+        window.requestAnimationFrame(this.draw);
     }
 }
 
@@ -134,6 +135,7 @@ class PianoKey {
         this.type = type;
         this.sound = sound;
         this.rect = null;
+        this.is_playing = false;
     }
 
     play(audio_ctx) {
@@ -141,5 +143,10 @@ class PianoKey {
         buffer_node.buffer = this.sound;
         buffer_node.connect(audio_ctx.destination);
         buffer_node.start();
+
+        this.is_playing = true;
+        setTimeout(() => {
+            this.is_playing = false;
+        }, 200);
     }
 }
