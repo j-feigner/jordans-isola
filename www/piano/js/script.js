@@ -5,9 +5,7 @@ function main() {
     canvas.width = 700;
     canvas.height = 400;
 
-    var audio_ctx = new AudioContext();
-
-    var piano = new Piano(canvas, audio_ctx);
+    var piano = new Piano(canvas, new AudioContext());
     piano.load();
 
     canvas.addEventListener("click", (event) => {
@@ -19,7 +17,7 @@ class Piano {
     constructor(canvas, audio_context) {
         this.c = canvas;
         this.ctx = this.c.getContext("2d");
-        this.rect = new Rectangle(0, 0, this.c.width, this.c.height);
+
         this.audio_ctx = audio_context;
 
         // Array of ArrayBuffer data decoded by AudioContext from MP3 data on server
@@ -28,6 +26,17 @@ class Piano {
         // Ordered array of PianoKey objects for rendering (front -> back) 
         // and hit detection (back -> front)
         this.key_buffer = [];
+    }
+
+    checkKeyHit(x, y) {
+        // Traverse through key_buffer[] from back to front, return when a key is hit
+        for(var i = this.key_buffer.length - 1; i >= 0; i--) {
+            var key = this.key_buffer[i];
+            if(key.rect.isPointInBounds(x, y)) {
+                key.play(this.audio_ctx);
+                return;
+            }
+        }
     }
 
     start() {
@@ -52,17 +61,6 @@ class Piano {
     // Call sequence: getSoundFiles() -> loadSoundFiles() -> createKeys() -> start()
     load() {
         this.#getSoundFiles();
-    }
-
-    checkKeyHit(x, y) {
-        // Traverse through key_buffer[] from back to front, return when a key is hit
-        for(var i = this.key_buffer.length - 1; i >= 0; i--) {
-            var key = this.key_buffer[i];
-            if(key.rect.isPointInBounds(x, y)) {
-                key.play(this.audio_ctx);
-                return;
-            }
-        }
     }
 
     // Called by start() to begin sound loading process
@@ -125,12 +123,7 @@ class Piano {
         }
 
         // Populate key buffer array according to render order (white -> black)
-        white_keys.forEach((key) => {
-            this.key_buffer.push(key);
-        })
-        black_keys.forEach((key) => {
-            this.key_buffer.push(key);
-        })
+        this.key_buffer = white_keys.concat(black_keys);
 
         this.start();
     }
