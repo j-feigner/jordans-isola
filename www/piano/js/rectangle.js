@@ -1,3 +1,5 @@
+// Rectangle object useful for Canvas manipulation
+// Consists of an origin point expressed as (x,y) and width/height values
 class Rectangle {
     constructor(x, y, width, height) {
         this.x = x;
@@ -6,6 +8,8 @@ class Rectangle {
         this.height = height;
     }
 
+    // Boolean function to determine if given (x,y) point lies within the bounds
+    // of a Rectangle object
     isPointInBounds(x, y) {
         var x1 = this.x;
         var x2 = this.x + this.width;
