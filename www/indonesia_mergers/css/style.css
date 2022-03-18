@@ -12,9 +12,17 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.app {
+    position: relative;
+    width: 309px;
+    height: 600px;
+    top: 100px;
+    margin: auto;
+}
+
 .goods-selection {
     position: relative;
-    width: 518px;
+    width: 100%;
     margin: auto;
 }
 
@@ -26,6 +34,14 @@ html, body {
     margin: 0px;
     border: 0px;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+.good .overlay {
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    opacity: 0;
 }
 
 .good p {
@@ -39,12 +55,20 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
+.good:hover .overlay {
+    opacity: 0.6;
+}
+
 #rice {
     background-color: darkgoldenrod;
 }
 
 #spice {
     background-color: darkolivegreen;
+}
+
+#ricespice {
+    background-image: linear-gradient(to bottom right, darkgoldenrod 50%, darkolivegreen 50%);
 }
 
 #rubber {
@@ -61,7 +85,7 @@ html, body {
 
 .asset-selection {
     position: relative;
-    width: 1018px;
+    width: 100%;
     height: 100px;
     margin: auto;
     text-align: center;
@@ -70,11 +94,15 @@ html, body {
 }
 
 .asset {
-    display: inline-block;
+    position: absolute;
+    width: 100px;
+    margin: 0px;
 }
 
-.asset input {
-    width: 100px;
-    height: 100px;
-    text-align: center;
+#asset1 {
+    left: 0px;
+}
+
+#asset2 {
+    right: 0px;
 }
