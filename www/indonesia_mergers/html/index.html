@@ -10,6 +10,10 @@
     <div class="site-wrapper">
         <div class="app">
             <div class="goods-selection">
+                <span class="good" id="ship">
+                    <div class="overlay"></div>
+                    <p>SHIP</p>
+                </span>
                 <span class="good" id="rice">
                     <div class="overlay"></div>
                     <p>RICE</p>
@@ -17,10 +21,6 @@
                 <span class="good" id="spice">
                     <div class="overlay"></div>
                     <p>SPICE</p>
-                </span>
-                <span class="good" id="ricespice">
-                    <div class="overlay"></div>
-                    <p>RICE / SPICE</p>
                 </span>
                 <span class="good" id="rubber">
                     <div class="overlay"></div>
@@ -38,21 +38,25 @@
             <div class="asset-selection">
                 <div class="asset" id="asset1">
                     <span class="value-adjuster" id="asset1Minus">-</span>
-                    <span class="asset-value">1</span>
+                    <span class="value-output" id="asset1Value">1</span>
                     <span class="value-adjuster" id="asset1Plus">+</span>
                 </div>
                 <div class="asset" id="asset2">
                     <span class="value-adjuster" id="asset2Minus">-</span>
-                    <span class="asset-value">1</span>
+                    <span class="value-output" id="asset2Value">1</span>
                     <span class="value-adjuster" id="asset2Plus">+</span>
                 </div>
             </div>
             <div class="bid-selection">
                 <span class="value-adjuster" id="bidMinus5">-5</span>
                 <span class="value-adjuster" id="bidMinus1">-</span>
-                <span class="value-output" id="bidOutput">BID HERE</span>
+                <span class="value-output" id="bidOutput">400</span>
                 <span class="value-adjuster" id="bidPlus1">+</span>
                 <span class="value-adjuster" id="bidPlus5">+5</span>
+            </div>
+            <div id="payout-output">
+                <div class="value-output" id="payout1">200</div>
+                <div class="value-output" id="payout2">200</div>
             </div>
         </div>
     </div>
