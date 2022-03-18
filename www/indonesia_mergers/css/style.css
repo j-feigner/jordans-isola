@@ -57,14 +57,17 @@ html, body {
     margin: 0px;
     border: 0px;
     border-radius: 4px;
-    cursor: pointer;
 }
 
 .good .overlay {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
+    border: 6px solid darkblue;
+    border-radius: 4px;
     background-color: gray;
     opacity: 0;
+    cursor: pointer;
 }
 
 .good p {
@@ -76,6 +79,7 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
 .good:hover .overlay {
