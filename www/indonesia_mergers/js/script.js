@@ -62,11 +62,11 @@ class App {
 
         this.payout1 = {
             value: 0,
-            display: document.querySelector("#payout1")
+            display: document.querySelector("#payout1Output")
         }
         this.payout2 = {
             value: 0,
-            display: document.querySelector("#payout2")
+            display: document.querySelector("#payout2Output")
         }
     }
 

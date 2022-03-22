@@ -54,6 +54,15 @@ html, body {
     color:cornflowerblue;
 }
 
+.label {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    height: 12px;
+    line-height: 12px;
+    color: rgb(220, 220, 220);
+}
+
 .goods-selection {
     position: relative;
     top: 20px;
@@ -124,7 +133,7 @@ html, body {
 .asset-selection {
     position: relative;
     width: 400px;
-    height: 70px;
+    height: 80px;
     top: 30px;
     margin: auto;
 }
@@ -156,29 +165,39 @@ html, body {
     top: 50px;
     margin: auto;
     width: 400px;
-    height: 70px;
+    height: 80px;
     line-height: 70px;
 }
 
-#payout1 {
+.payout {
     position: absolute;
-    width: 100px;
+    width: 110px;
+    margin: 0px;
+}
+
+#payout1 {
     left: 0px;
 }
 
 #payout2 {
-    position: absolute;
-    width: 100px;
     right: 0px;
+}
+
+#payout1Output {
+    width: 100px;
+}
+
+#payout2Output {
+    width: 100px;
 }
 
 .bid-selection {
     position: relative;
-    top: 100px;
+    top: 80px;
     width: 100%;
-    height: 100px;
+    height: 120px;
     text-align: center;
-    line-height: 100px;
+    line-height: 120px;
 }
 
 .bid-selection #bidMinus5 {
@@ -189,6 +208,13 @@ html, body {
 .bid-selection #bidPlus5 {
     margin-left: 30px;
     width: 60px;
+}
+
+#bidLabel {
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
+    margin-bottom: -10px;
 }
 
 #bidOutput {
