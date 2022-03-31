@@ -5,10 +5,6 @@ function main() {
 
     var piano = new Piano(canvas, 800, 200);
     piano.start();
-
-    canvas.addEventListener("click", (event) => {
-        piano.checkKeyHit(event.offsetX, event.offsetY);
-    })
 }
 
 class Piano {
@@ -50,6 +46,10 @@ class Piano {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
         this.ctx.clearRect(0, 0, this.width, this.height);
+
+        this.canvas.addEventListener("click", (event) => {
+            this.checkKeyHit(event.offsetX, event.offsetY);
+        })
     }
 
     // Called by start() to begin sound loading process
@@ -126,8 +126,14 @@ class Piano {
             } else {
                 this.ctx.fillStyle = key.type;
             }
-            this.ctx.strokeStyle = "black";
-            this.ctx.lineWidth = 2;
+
+            if(key.type === "white") {
+                this.ctx.strokeStyle = "gray";
+                this.ctx.lineWidth = 2;
+            } else {
+                this.ctx.strokeStyle = "black";
+                this.ctx.lineWidth = 1;
+            }
 
             this.ctx.fillRect(key.rect.x, key.rect.y, key.rect.width, key.rect.height);
             this.ctx.strokeRect(key.rect.x, key.rect.y, key.rect.width, key.rect.height);
