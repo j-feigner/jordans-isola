@@ -3,7 +3,7 @@ window.onload = main;
 function main() {
     var canvas = document.querySelector(".viewport");
 
-    var piano = new Piano(canvas, 500, 250);
+    var piano = new Piano(canvas, 800, 200);
     piano.start();
 
     canvas.addEventListener("click", (event) => {
@@ -86,12 +86,12 @@ class Piano {
 
     // Create PianoKey objects using sound buffer data
     createKeys() {
-        var w1 = this.width / 7; // Primary key width value (white keys)
+        var w1 = this.width / 21; // Primary key width value (white keys)
         var w2 = w1 / 2; // Secondary key width value (black keys)
 
         var white_keys = [];
         var black_keys = [];
-        var black_key_locations = [1, 3, 6, 8, 10]; // Index locations of black keys in a 13 note octave.
+        var black_key_locations = [1, 3, 6, 8, 10]; // Index locations of black keys in a 12 note octave.
                                                     // Checking a key's index against these using the modulus 
                                                     // operator can determine if the key is white or black.
 
@@ -100,7 +100,7 @@ class Piano {
             var new_key;
             var x_offset = w1 * white_keys.length;
 
-            if(black_key_locations.includes(i % 13)) {
+            if(black_key_locations.includes(i % 12)) {
                 new_key = new PianoKey("black", this.sounds[i]);
                 new_key.rect = new Rectangle(x_offset - w2 / 2, 0, w2, this.height * 0.625);
                 black_keys.push(new_key);
@@ -122,7 +122,7 @@ class Piano {
     draw() {
         this.key_buffer.forEach((key) => {
             if(key.is_playing) {
-                this.ctx.fillStyle = "gray";
+                this.ctx.fillStyle = "lightsalmon";
             } else {
                 this.ctx.fillStyle = key.type;
             }
