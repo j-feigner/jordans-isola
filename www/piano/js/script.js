@@ -2,10 +2,8 @@ window.onload = main;
 
 function main() {
     var canvas = document.querySelector(".viewport");
-    canvas.width = 500;
-    canvas.height = 250;
 
-    var piano = new Piano(canvas, new AudioContext());
+    var piano = new Piano(canvas, 500, 250);
     piano.start();
 
     canvas.addEventListener("click", (event) => {
@@ -14,17 +12,16 @@ function main() {
 }
 
 class Piano {
-    constructor(canvas, audio_context) {
-        this.c = canvas;
-        this.ctx = this.c.getContext("2d");
-        this.audio_ctx = audio_context;
+    constructor(canvas, width, height) {
+        this.canvas = canvas;
+        this.ctx = this.canvas.getContext("2d");
+        this.width = width;
+        this.height = height;
 
-        // Array of ArrayBuffer data decoded by AudioContext from MP3 data on server
-        this.sounds = [];
+        this.audio_ctx = new AudioContext();
+        this.sounds = []; // Array of ArrayBuffer data decoded by AudioContext from MP3 data on server
 
-        // Ordered array of PianoKey objects for rendering (front -> back) 
-        // and hit detection (back -> front)
-        this.key_buffer = [];
+        this.key_buffer = []; // Ordered array of PianoKey objects for rendering (front -> back) and hit detection (back -> front)
 
         this.draw = this.draw.bind(this);
     }
@@ -41,11 +38,18 @@ class Piano {
     }
 
     // Wrapper function for loading sound data and initializing app
-    // Call sequence: getSoundFiles() -> createKeys() -> draw() loop
+    // Call sequence: loadSoundFiles() -> createKeys() -> draw() loop
     start() {
+        this.initializeCanvas();
         this.#loadSoundFiles(() => {
             this.createKeys();
         });
+    }
+
+    initializeCanvas() {
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
+        this.ctx.clearRect(0, 0, this.width, this.height);
     }
 
     // Called by start() to begin sound loading process
@@ -80,10 +84,10 @@ class Piano {
         req.send();
     }
 
-    // Called by loadSoundFiles() to ceate PianoKey objects using sound buffer data
+    // Create PianoKey objects using sound buffer data
     createKeys() {
-        var white_key_width = 500 / 7;
-        var black_key_width = white_key_width / 2;
+        var w1 = this.width / 7; // Primary key width value (white keys)
+        var w2 = w1 / 2; // Secondary key width value (black keys)
 
         var white_keys = [];
         var black_keys = [];
@@ -94,14 +98,15 @@ class Piano {
         // Create new key objects and assign to subarrays by type
         for(var i = 0; i < this.sounds.length; i++) {
             var new_key;
+            var x_offset = w1 * white_keys.length;
 
             if(black_key_locations.includes(i % 13)) {
                 new_key = new PianoKey("black", this.sounds[i]);
-                new_key.rect = new Rectangle(white_key_width * white_keys.length - black_key_width / 2, 0, black_key_width, 250 * 0.65);
+                new_key.rect = new Rectangle(x_offset - w2 / 2, 0, w2, this.height * 0.625);
                 black_keys.push(new_key);
             } else {
                 new_key = new PianoKey("white", this.sounds[i]);
-                new_key.rect = new Rectangle(white_key_width * white_keys.length, 0, white_key_width, 250);
+                new_key.rect = new Rectangle(x_offset, 0, w1, this.height);
                 white_keys.push(new_key);
             }
         }
@@ -113,6 +118,7 @@ class Piano {
         window.requestAnimationFrame(this.draw);
     }
 
+    // Called every frame. Renders all keys in key_buffer front to back.
     draw() {
         this.key_buffer.forEach((key) => {
             if(key.is_playing) {
