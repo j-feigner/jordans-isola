@@ -2,8 +2,8 @@ window.onload = main;
 
 function main() {
     var canvas = document.querySelector(".viewport");
-    canvas.width = 700;
-    canvas.height = 400;
+    canvas.width = 500;
+    canvas.height = 250;
 
     var piano = new Piano(canvas, new AudioContext());
     piano.start();
@@ -40,50 +40,51 @@ class Piano {
         }
     }
 
-    // Wrapper function for nested XMLHttpRequests for loading sound data and initializing app
-    // Call sequence: getSoundFiles() -> loadSoundFiles() -> createKeys() -> draw() loop
+    // Wrapper function for loading sound data and initializing app
+    // Call sequence: getSoundFiles() -> createKeys() -> draw() loop
     start() {
-        this.#getSoundFiles();
+        this.#loadSoundFiles(() => {
+            this.createKeys();
+        });
     }
 
     // Called by start() to begin sound loading process
-    #getSoundFiles() {
+    #loadSoundFiles(success_callback) {
         // Get array of sound file names from directory
         var req = new XMLHttpRequest();
         req.responseType = "text";
         req.open("GET", "php/load_sounds.php");
         req.onload = () => {
-            this.sounds = JSON.parse(req.responseText);
-            this.#loadSoundFiles();
+            // Decode sound data into arraybuffers from sounds directory using file names
+            var sounds = JSON.parse(req.responseText);
+            var remaining__reqs = sounds.length;
+
+            sounds.forEach((sound, index) => {
+                var path = "sounds/" + sound;
+                var req = new XMLHttpRequest();
+                req.responseType = "arraybuffer";
+                req.open("GET", path);
+                req.onload = () => {
+                    // Decode arraybuffer data into sounds array for later playback
+                    this.audio_ctx.decodeAudioData(req.response).then((buffer) => {
+                        this.sounds[index] = buffer;
+
+                        if(--remaining__reqs === 0) { // All sounds loaded successffully
+                            success_callback();
+                        }
+                    });
+                }
+                req.send();
+            })
         }
         req.send();
     }
 
-    // Called by getSoundFiles() to convert sounds array from file names to buffer data
-    #loadSoundFiles() {
-        // Decode sound data into arraybuffers from sounds directory using file names
-        var remaining__reqs = this.sounds.length;
-        this.sounds.forEach((sound, index) => {
-            var path = "sounds/" + sound;
-            var req = new XMLHttpRequest();
-            req.responseType = "arraybuffer";
-            req.open("GET", path);
-            req.onload = () => {
-                // Decode arraybuffer data into sounds array for later playback
-                this.audio_ctx.decodeAudioData(req.response).then((buffer) => {
-                    this.sounds[index] = buffer;
-
-                    if(--remaining__reqs === 0) { // All sounds loaded successffully
-                        this.#createKeys();
-                    }
-                });
-            }
-            req.send();
-        })
-    }
-
     // Called by loadSoundFiles() to ceate PianoKey objects using sound buffer data
-    #createKeys() {
+    createKeys() {
+        var white_key_width = 500 / 7;
+        var black_key_width = white_key_width / 2;
+
         var white_keys = [];
         var black_keys = [];
         var black_key_locations = [1, 3, 6, 8, 10]; // Index locations of black keys in a 13 note octave.
@@ -96,11 +97,11 @@ class Piano {
 
             if(black_key_locations.includes(i % 13)) {
                 new_key = new PianoKey("black", this.sounds[i]);
-                new_key.rect = new Rectangle(100 * white_keys.length - 25, 0, 50, 250);
+                new_key.rect = new Rectangle(white_key_width * white_keys.length - black_key_width / 2, 0, black_key_width, 250 * 0.65);
                 black_keys.push(new_key);
             } else {
                 new_key = new PianoKey("white", this.sounds[i]);
-                new_key.rect = new Rectangle(100 * white_keys.length, 0, 100, 400);
+                new_key.rect = new Rectangle(white_key_width * white_keys.length, 0, white_key_width, 250);
                 white_keys.push(new_key);
             }
         }
