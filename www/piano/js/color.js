@@ -1,5 +1,5 @@
 class Color {
-    constructor(red, green, blue, alpha) {
+    constructor(red, green, blue, alpha = 1) {
         this.r = red;
         this.g = green;
         this.b = blue;
@@ -21,6 +21,17 @@ class Color {
     // Returns string of form "rgb(r, g, b)" for CSS styling
     // If include_alpha is true will return string of form "rgba(r, g, b, a)"
     toString(include_alpha) {
-        
+        if(include_alpha) {
+            return "rgba(" + 
+                    String(this.r) + ", " +
+                    String(this.g) + ", " +
+                    String(this.b) + ", " + 
+                    String(this.a) + ")";
+        } else {
+            return "rgb(" + 
+                    String(this.r) + ", " +
+                    String(this.g) + ", " +
+                    String(this.b) + ")";
+        }
     }
 }
