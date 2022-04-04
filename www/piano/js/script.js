@@ -121,11 +121,7 @@ class Piano {
     // Called every frame. Renders all keys in key_buffer front to back.
     draw() {
         this.key_buffer.forEach((key) => {
-            if(key.is_playing) {
-                this.ctx.fillStyle = "lightsalmon";
-            } else {
-                this.ctx.fillStyle = key.type;
-            }
+            this.ctx.fillStyle = key.color.toString();
 
             if(key.type === "white") {
                 this.ctx.strokeStyle = "gray";
@@ -148,7 +144,15 @@ class PianoKey {
         this.type = type;
         this.sound = sound;
         this.rect = null;
-        this.is_playing = false;
+
+        if(this.type === "white") {
+            this.base_color = new Color(255, 255, 255);
+        }
+        if(this.type === "black") {
+            this.base_color = new Color(0, 0, 0);
+        }
+
+        this.color = this.base_color;
     }
 
     play(audio_ctx) {
@@ -157,9 +161,7 @@ class PianoKey {
         buffer_node.connect(audio_ctx.destination);
         buffer_node.start();
 
-        this.is_playing = true;
-        setTimeout(() => {
-            this.is_playing = false;
-        }, 200);
+        this.color = new Color(255, 160, 122);
+        this.color.fade(this.base_color, 800);
     }
 }

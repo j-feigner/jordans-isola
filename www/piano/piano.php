@@ -10,6 +10,7 @@
     <div class="site-wrapper">
         <canvas class="viewport"></canvas>
     </div>
+    <script src="js/color.js"></script>
     <script src="js/rectangle.js"></script>
     <script src="js/script.js"></script>
 </body>
