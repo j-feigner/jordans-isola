@@ -27,12 +27,13 @@ class Color {
 
     // Fades from current color to end_color over time milliseconds
     fade(end_color, time) {
-        var step = time / 50;
+        var increment = 50;
+        var time_step = time / increment;
 
-        var dr = (this.r - end_color.r) / 50;
-        var dg = (this.g - end_color.g) / 50;
-        var db = (this.b - end_color.b) / 50;
-        var da = (this.a - end_color.a) / 50;
+        var dr = (this.r - end_color.r) / increment;
+        var dg = (this.g - end_color.g) / increment;
+        var db = (this.b - end_color.b) / increment;
+        var da = (this.a - end_color.a) / increment;
 
         var timer = 0;
 
@@ -42,11 +43,11 @@ class Color {
             this.b -= db;
             this.a -= da;
 
-            timer += step;
+            timer += time_step;
             if(timer >= time) {
                 clearInterval(this.fade_interval);
             }
-        }, step);
+        }, time_step);
     }
 
     // Returns string of form "rgb(r, g, b)" for CSS styling / HTMLCanvas manipulation
