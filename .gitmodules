@@ -1,0 +1,3 @@
+[submodule "www/piano"]
+	path = www/piano
+	url = https://github.com/j-feigner/piano
