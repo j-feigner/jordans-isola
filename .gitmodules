@@ -1,3 +1,6 @@
 [submodule "www/piano"]
 	path = www/piano
 	url = https://github.com/j-feigner/piano
+[submodule "www/guitar"]
+	path = www/guitar
+	url = https://github.com/j-feigner/guitar
