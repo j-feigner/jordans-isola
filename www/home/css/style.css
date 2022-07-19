@@ -44,7 +44,9 @@ html, body {
     position: relative;
     width: 200px;
     height: 160px;
+    margin: 10px;
     background-color: darkgray;
+    display: inline-block;
 }
 
 .link a {
