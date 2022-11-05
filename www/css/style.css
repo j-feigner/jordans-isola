@@ -39,6 +39,7 @@ header {
     align-items: flex-start;
     padding-left: 30px;
     gap: 20px;
+    margin-bottom: 40px;
 }
 
 /* Main Container */
@@ -137,8 +138,74 @@ footer {
 }
 
 /* Custom Animated Arrow Buttons */
-.link-arrow-button {
-    -webkit-appearance: none;
+.link-arrow-button button{
+    display: flex;
+    flex-direction: row;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(60, 89, 117);
+    cursor: pointer;
+    color: white;
+    font-size: 1.5em;
+    font-weight: 500;
+    height: 2em;
+    overflow: hidden;
+}
+
+.link-arrow-button .button-body-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px 10px 30px;
+    transition: all .3s;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.button-body-wrapper .moving-arrow {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    height: 0.75em;
+    padding-right: 0px;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.link-arrow-button button {
+    transition: all .3s;
+}
+
+.link-arrow-button button:hover .moving-arrow {
+    opacity: 1;
+    padding-right: 15px;
+}
+
+.link-arrow-button button:hover .button-body-wrapper {
+    padding-left: 18px;
+    padding-right: 42px;
+    background-color: rgb(201, 107, 45);
+}
+
+.link-arrow-button .web-icon-wrapper {
+    padding: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 2em;
+    background-color: rgb(65, 60, 60);
+    transition: all .3s;
+}
+
+.link-arrow-button button:hover .web-icon-wrapper {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.link-arrow-button .web-icon-wrapper img {
+    max-height: 100%;
 }
 
 /* General Styles & Font Sizes */
@@ -148,5 +215,5 @@ a {
 }
 
 h1 {
-    font-size: 3.5em;
+    font-size: 5em;
 }
