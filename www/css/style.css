@@ -1,0 +1,152 @@
+html, body, #site-wrapper {
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    margin: 0px;
+    background-color: rgb(243, 243, 243);
+    font-family: 'Roboto', sans-serif;
+}
+
+#site-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Site Header */
+header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#site-header {
+    color: rgb(3, 64, 104);
+    padding: 0px 30px 0px 30px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+}
+
+#site-header .heading-underline {
+    height: 1px;
+    width: 100%;
+    border-radius: 1px;
+    background-color: rgb(18, 33, 73);
+}
+
+#social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-left: 30px;
+    gap: 20px;
+}
+
+/* Main Container */
+main {
+    flex-grow: 1;
+}
+
+#main-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    padding: 30px;
+}
+
+/* Link Styling */
+.page-link {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    aspect-ratio: 1/2;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.158);
+    border-radius: 0px 0px 6px 6px;
+}
+
+.link-image {
+    position: relative;
+    width: 100%;
+    flex-basis: 50%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.link-image img,
+.link-image .image-overlay {
+    width: 100%;
+    height: 100%;
+    transition: all .3s;
+}
+
+.link-image .image-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: linear-gradient(0deg, rgb(10, 17, 32), rgba(2, 6, 31, 0.4));
+    opacity: 0.85;
+}
+
+.link-image:hover .image-overlay {
+    opacity: 0.95;
+}
+
+.link-image:active .image-overlay{
+    opacity: 1;
+}
+
+.link-image:hover .link-label {
+    color:rgb(224, 149, 88)
+}
+
+.link-image:hover img {
+    transform: scale(108%);
+}
+
+.link-label {
+    position: absolute;
+    color: white;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    pointer-events: none;
+    transition: all .5s;
+    padding: 0px 14px 0px 14px;
+    box-sizing: border-box;
+}
+
+.link-description {
+    width: 100%;
+    background-color: white;
+    flex-basis: 50%;
+    border-radius: 0px 0px 6px 6px;
+}
+
+/* Site Footer */
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(19, 0, 0);
+    color: white;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Custom Animated Arrow Buttons */
+.link-arrow-button {
+    -webkit-appearance: none;
+}
+
+/* General Styles & Font Sizes */
+a {
+    color: white;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 3.5em;
+}
