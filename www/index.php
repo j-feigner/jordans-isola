@@ -44,6 +44,9 @@
         <main>
             <div id="main-content-wrapper">
                 <div id="main-content">
+                    <div class="section-header">
+                        <h4><i>Bigger Stuff</i></h4>
+                    </div>
                     <div id="larger-projects" class="project-group">
                         <div class="page-link big">
                             <div class="link-image">
@@ -78,7 +81,10 @@
                             </div>
                         </div>
                     </div>
-                    <div id="misc-projects" class="project-group">
+                    <div class="section-header">
+                        <h4><i>Mathy Stuff</i></h4>
+                    </div>
+                    <div class="project-group misc-projects">
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/sierpinski_link.png">
@@ -92,6 +98,24 @@
                             <div class="link-description">
                             </div>
                         </div>
+                        <div class="page-link small">
+                            <div class="link-image">
+                                <img src="home/images/mandelbrot_link.png">
+                                <a href="pages/mandelbrot">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <div class="link-label">
+                                    <h5>Mandelbrot Set Generator</h5>
+                                </div>
+                            </div>
+                            <div class="link-description">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-header">
+                        <h4><i>Noisy Stuff</i></h4>
+                    </div>
+                    <div class="project-group misc-projects">
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/piano_link_img.png">
@@ -118,6 +142,11 @@
                             <div class="link-description">
                             </div>
                         </div>
+                    </div>
+                    <div class="section-header">
+                        <h4><i>Board Game Stuff</i></h4>
+                    </div>
+                    <div class="project-group misc-projects">
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/indonesia_link.png">
