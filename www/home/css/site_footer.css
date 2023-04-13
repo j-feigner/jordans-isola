@@ -7,9 +7,12 @@ footer {
     width: 100%;
     height: 80px;
     background-color: rgb(19, 0, 0);
-    color: white;
     padding: 30px;
     margin-top: 2em;
     box-sizing: border-box;
+}
+
+footer a {
+    color: white; 
     text-decoration: none;
 }
