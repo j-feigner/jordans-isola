@@ -87,6 +87,19 @@
                     <div class="project-group misc-projects">
                         <div class="page-link small">
                             <div class="link-image">
+                                <img src="home/images/mandelbrot_link.png">
+                                <a href="pages/mandelbrot">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <div class="link-label">
+                                    <h5>Mandelbrot Set Generator</h5>
+                                </div>
+                            </div>
+                            <div class="link-description">
+                            </div>
+                        </div>
+                        <div class="page-link small">
+                            <div class="link-image">
                                 <img src="home/images/sierpinski_link.png">
                                 <a href="pages/sierpinski">
                                     <div class="image-overlay"></div>
@@ -100,12 +113,12 @@
                         </div>
                         <div class="page-link small">
                             <div class="link-image">
-                                <img src="home/images/mandelbrot_link.png">
-                                <a href="pages/mandelbrot">
+                                <img src="home/images/cube_link.png">
+                                <a href="pages/cube">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
-                                    <h5>Mandelbrot Set Generator</h5>
+                                    <h5>3D Cube</h5>
                                 </div>
                             </div>
                             <div class="link-description">
@@ -155,19 +168,6 @@
                                 </a>
                                 <div class="link-label">
                                     <h5>Mergers Calculator<br>(Indonesia)</h5>
-                                </div>
-                            </div>
-                            <div class="link-description">
-                            </div>
-                        </div>
-                        <div class="page-link small">
-                            <div class="link-image">
-                                <img src="home/images/fresh_fish_link.png">
-                                <a href="pages/freshfish">
-                                    <div class="image-overlay"></div>
-                                </a>
-                                <div class="link-label">
-                                    <h5>Expropriation Helper<br>(Fresh Fish)</h5>
                                 </div>
                             </div>
                             <div class="link-description">
