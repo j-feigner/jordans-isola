@@ -51,7 +51,7 @@
                         <div class="page-link big">
                             <div class="link-image">
                                 <img src="home/images/bgg_ratings_link.png">
-                                <a href="pages/bggratingstool">
+                                <a href="pages/bggratingstool/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -70,7 +70,7 @@
                         <div class="page-link big">
                             <div class="link-image">
                                 <img src="home/images/music_sequencer_link.png">
-                                <a href="pages/musicsequencer">
+                                <a href="pages/musicsequencer/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -88,7 +88,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/mandelbrot_link.png">
-                                <a href="pages/mandelbrot">
+                                <a href="pages/mandelbrot/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -101,7 +101,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/sierpinski_link.png">
-                                <a href="pages/sierpinski">
+                                <a href="pages/sierpinski/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -114,7 +114,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/cube_link.png">
-                                <a href="pages/cube">
+                                <a href="pages/cube/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -132,7 +132,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/piano_link_img.png">
-                                <a href="pages/piano">
+                                <a href="pages/piano/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -145,7 +145,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/guitar_link.png">
-                                <a href="pages/guitar">
+                                <a href="pages/guitar/index.php">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -163,7 +163,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/indonesia_link.png">
-                                <a href="pages/indonesiamergers">
+                                <a href="pages/indonesiamergers/index.html">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
@@ -176,7 +176,7 @@
                         <div class="page-link small">
                             <div class="link-image">
                                 <img src="home/images/wotr_link.png">
-                                <a href="pages/wotrbattletool">
+                                <a href="pages/wotrbattletool/index.html">
                                     <div class="image-overlay"></div>
                                 </a>
                                 <div class="link-label">
